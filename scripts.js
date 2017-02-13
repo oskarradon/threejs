@@ -1,5 +1,5 @@
-const WIDTH = 400;
-const HEIGHT = 300;
+const WIDTH = window.innerWidth;
+const HEIGHT = window.innerHeight;
 
 const VIEW_ANGLE = 45;
 const ASPECT = WIDTH/HEIGHT;
@@ -25,19 +25,15 @@ renderer.setSize(WIDTH, HEIGHT);
 container.appendChild(renderer.domElement);
 
 
-const RADIUS = 50;
-const SEGMENTS = 16;
-const RINGS = 16;
+const cubeMaterial = new THREE.MeshLambertMaterial({ color: 0xCC0000 });
 
-const sphereMaterial = new THREE.MeshLambertMaterial({ color: 0xCC0000 });
-
-const sphere = new THREE.Mesh(
-  new THREE.SphereGeometry( RADIUS, SEGMENTS, RINGS), sphereMaterial
+const cube = new THREE.Mesh(
+  new THREE.BoxGeometry( 100, 100, 100 ), cubeMaterial
 );
 
-sphere.position.z = -300;
+cube.position.z = -300;
 
-scene.add(sphere);
+scene.add(cube);
 
 const pointLight = new THREE.PointLight(0xFFFFFF);
 
@@ -48,6 +44,8 @@ pointLight.position.z = 130;
 scene.add(pointLight);
 
 function update() {
+  cube.rotation.x += 0.1;
+  cube.rotation.y += 0.1;
   renderer.render(scene, camera);
   requestAnimationFrame(update);
 }
