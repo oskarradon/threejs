@@ -44,8 +44,8 @@ pointLight.position.z = 130;
 scene.add(pointLight);
 
 function update() {
-  cube.rotation.x += 0.1;
-  cube.rotation.y += 0.1;
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
   renderer.render(scene, camera);
   requestAnimationFrame(update);
 }
