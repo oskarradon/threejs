@@ -21,28 +21,28 @@ container.appendChild(renderer.domElement);
 
 
 // Make a cube
-// const cubeMaterial = new THREE.MeshLambertMaterial({ color: 0xCC0000 });
-// const cube = new THREE.Mesh(
-//   new THREE.BoxGeometry( 100, 100, 100 ), cubeMaterial
-// );
-// cube.position.z = -300;
-// scene.add(cube);
+const cubeMaterial = new THREE.MeshNormalMaterial({ shading: THREE.FlatShading });
+const cube = new THREE.Mesh(
+  new THREE.BoxGeometry( 100, 100, 100 ), cubeMaterial
+);
+cube.position.z = -300;
+scene.add(cube);
 
 
 // Make a line
-const lineMaterial = new THREE.LineDashedMaterial({
-	color: 0x0000ff,
-	linewidth: 1,
-	scale: 1,
-	dashSize: 3,
-	gapSize: 1,
-});
-const geometry = new THREE.Geometry();
-geometry.vertices.push(new THREE.Vector3(-10, 0, 0));
-geometry.vertices.push(new THREE.Vector3(0, 10, 0));
-geometry.vertices.push(new THREE.Vector3(10, 0, 0));
-const line = new THREE.Line(geometry, lineMaterial);
-scene.add(line);
+// const lineMaterial = new THREE.LineDashedMaterial({
+// 	color: 0x0000ff,
+// 	linewidth: 1,
+// 	scale: 1,
+// 	dashSize: 3,
+// 	gapSize: 1,
+// });
+// const geometry = new THREE.Geometry();
+// geometry.vertices.push(new THREE.Vector3(-10, 0, 0));
+// geometry.vertices.push(new THREE.Vector3(0, 10, 0));
+// geometry.vertices.push(new THREE.Vector3(10, 0, 0));
+// const line = new THREE.Line(geometry, lineMaterial);
+// scene.add(line);
 
 // Make a light
 const pointLight = new THREE.PointLight(0xFFFFFF);
