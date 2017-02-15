@@ -1,69 +1,8 @@
-
-// Set up
-const WIDTH = window.innerWidth;
-const HEIGHT = window.innerHeight;
-const VIEW_ANGLE = 45;
-const ASPECT = WIDTH/HEIGHT;
-const NEAR = 0.1;
-const FAR = 10000;
-const container = document.querySelector('#container');
-const renderer = new THREE.WebGLRenderer();
-const camera = new THREE.PerspectiveCamera(
-  VIEW_ANGLE,
-  ASPECT,
-  NEAR,
-  FAR
-);
 const scene = new THREE.Scene();
-scene.add(camera);
-renderer.setSize(WIDTH, HEIGHT);
-container.appendChild(renderer.domElement);
+const camera = new THREE.PerspectiveCamera( 
+  75, window.innerWidth / window.innerHeight, 0.1, 1000 
+  ); // FOV, aspect ratio, near & far clipping plane
 
-
-// Make a cube
-const cubeMaterial = new THREE.MeshNormalMaterial({ shading: THREE.FlatShading });
-const cube = new THREE.Mesh(
-  new THREE.BoxGeometry( 100, 100, 100 ), cubeMaterial
-);
-cube.position.z = -300;
-scene.add(cube);
-
-
-// Make a line
-// const lineMaterial = new THREE.LineDashedMaterial({
-// 	color: 0x0000ff,
-// 	linewidth: 1,
-// 	scale: 1,
-// 	dashSize: 3,
-// 	gapSize: 1,
-// });
-// const geometry = new THREE.Geometry();
-// geometry.vertices.push(new THREE.Vector3(-10, 0, 0));
-// geometry.vertices.push(new THREE.Vector3(0, 10, 0));
-// geometry.vertices.push(new THREE.Vector3(10, 0, 0));
-// const line = new THREE.Line(geometry, lineMaterial);
-// scene.add(line);
-
-// Make a light
-const pointLight = new THREE.PointLight(0xFFFFFF);
-pointLight.position.x = 10;
-pointLight.position.y = 50;
-pointLight.position.z = 130;
-scene.add(pointLight);
-
-
-// Animate the scene
-function update() {
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
-  renderer.render(scene, camera);
-  requestAnimationFrame(update);
-}
-
-requestAnimationFrame(update);
-
-
-// Mouse movement
-document.onmousemove = function(e) {
-  console.log("mouse location:", e.clientX, e.clientY)
-}
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
